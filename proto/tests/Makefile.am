@@ -7,6 +7,7 @@ AM_CPPFLAGS = \
 -isystem$(top_builddir)/cpp_out \
 -isystem$(top_builddir)/grpc_out \
 -I$(top_srcdir)/../frontends_extra/cpp \
+-I$(top_srcdir) \
 -I$(top_srcdir)/p4info \
 -I$(top_srcdir)/server \
 -I$(top_srcdir)/../third_party/googletest/googletest/include \
@@ -21,6 +22,7 @@ TESTS = \
 test_p4info_convert \
 test_proto_fe \
 test_proto_fe_packet_io \
+test_proto_fe_set_pipeline_config \
 test_server_no_pipeline_config \
 test_server_gnmi \
 test_server_arbitration \
@@ -50,6 +52,8 @@ matchers.cpp
 test_proto_fe_SOURCES = $(proto_fe_common_source) test_proto_fe.cpp
 test_proto_fe_packet_io_SOURCES = $(proto_fe_common_source) \
 test_proto_fe_packet_io.cpp
+test_proto_fe_set_pipeline_config_SOURCES =$(proto_fe_common_source) \
+test_proto_fe_set_pipeline_config.cpp
 
 # this is an awful hack and a big time saver :)
 # thanks to this, I do not need to implement all of the _pi_* functions, only
@@ -57,6 +61,7 @@ test_proto_fe_packet_io.cpp
 # this for unit tests
 test_proto_fe_LDFLAGS = $(LD_IGNORE_UNRESOLVED_SYMBOLS)
 test_proto_fe_packet_io_LDFLAGS = $(LD_IGNORE_UNRESOLVED_SYMBOLS)
+test_proto_fe_set_pipeline_config_LDFLAGS = $(LD_IGNORE_UNRESOLVED_SYMBOLS)
 
 mock_switch_libs = \
 $(top_builddir)/p4info/libpiconvertproto.la \
@@ -73,6 +78,7 @@ $(PROTOBUF_LIBS)
 
 test_proto_fe_LDADD = $(proto_fe_libs)
 test_proto_fe_packet_io_LDADD = $(proto_fe_libs)
+test_proto_fe_set_pipeline_config_LDADD = $(proto_fe_libs)
 
 test_server_common_source = $(proto_fe_common_source) \
 server/utils.h
@@ -107,6 +113,7 @@ check_PROGRAMS = \
 test_p4info_convert \
 test_proto_fe \
 test_proto_fe_packet_io \
+test_proto_fe_set_pipeline_config \
 test_server_no_pipeline_config \
 test_server_gnmi \
 test_server_arbitration \

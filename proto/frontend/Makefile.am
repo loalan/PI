@@ -6,6 +6,7 @@ AM_CPPFLAGS = \
 -I$(top_srcdir)/../include \
 -I$(top_builddir)/cpp_out \
 -I$(top_srcdir)/../frontends_extra/cpp \
+-I$(top_srcdir) \
 -I$(top_srcdir)/p4info \
 -I$(top_srcdir)/third_party
 
@@ -24,14 +25,18 @@ src/packet_io_mgr.cpp \
 src/common.h \
 src/common.cpp \
 src/logger.h \
-src/logging.cpp
+src/logging.cpp \
+src/report_error.h \
+src/pre_mc_mgr.h \
+src/pre_mc_mgr.cpp
 
 libpifeproto_la_LIBADD = \
 $(top_builddir)/../frontends_extra/cpp/libpifecpp.la \
 $(top_builddir)/p4info/libpiconvertproto.la \
 $(top_builddir)/libpiprotobuf.la \
 $(top_builddir)/../src/libpip4info.la \
-$(top_builddir)/third_party/libfmt.la
+$(top_builddir)/third_party/libfmt.la \
+$(BOOST_THREAD_LIB)
 
 nobase_include_HEADERS = \
 PI/frontends/proto/device_mgr.h \

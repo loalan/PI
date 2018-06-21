@@ -43,8 +43,16 @@ static inline pi_p4_id_t pi_make_counter_id(uint16_t index) {
   return (PI_COUNTER_ID << 24) | index;
 }
 
+static inline pi_p4_id_t pi_make_direct_counter_id(uint16_t index) {
+  return (PI_DIRECT_COUNTER_ID << 24) | index;
+}
+
 static inline pi_p4_id_t pi_make_meter_id(uint16_t index) {
   return (PI_METER_ID << 24) | index;
+}
+
+static inline pi_p4_id_t pi_make_direct_meter_id(uint16_t index) {
+  return (PI_DIRECT_METER_ID << 24) | index;
 }
 
 #define PI_GET_TYPE_ID(id) ((id) >> 24)
@@ -72,7 +80,7 @@ static inline size_t get_match_key_size_one_field(
 struct pi_match_key_s {
   const pi_p4info_t *p4info;
   pi_p4_id_t table_id;
-  uint32_t priority;
+  pi_priority_t priority;
   size_t data_size;
   char *data;
 };

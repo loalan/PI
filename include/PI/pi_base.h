@@ -68,6 +68,7 @@ typedef enum {
 
   PI_STATUS_INVALID_ENTRY_PROPERTY,
   PI_STATUS_INVALID_ENTRY_TYPE,
+  PI_STATUS_UNSUPPORTED_ENTRY_PRIORITY,
   PI_STATUS_UNSUPPORTED_MATCH_TYPE,
   PI_STATUS_CONST_DEFAULT_ACTION,
   PI_STATUS_CONST_DEFAULT_ACTION_NON_MUTABLE_PARAMS,
@@ -123,7 +124,9 @@ typedef struct pi_p4info_s pi_p4info_t;
 #define PI_ACT_PROF_ID 0x11
 
 #define PI_COUNTER_ID 0x12
-#define PI_METER_ID 0x13
+#define PI_DIRECT_COUNTER_ID 0x13
+#define PI_METER_ID 0x14
+#define PI_DIRECT_METER_ID 0x15
 
 #define PI_RES_TYPE_MAX 0x100
 
@@ -136,7 +139,9 @@ bool pi_is_table_id(pi_p4_id_t id);
 bool pi_is_act_prof_id(pi_p4_id_t id);
 
 bool pi_is_counter_id(pi_p4_id_t id);
+bool pi_is_direct_counter_id(pi_p4_id_t id);
 bool pi_is_meter_id(pi_p4_id_t id);
+bool pi_is_direct_meter_id(pi_p4_id_t id);
 
 #ifdef __cplusplus
 }
